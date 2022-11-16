@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swamp Game", "Swamp Game\Swamp Game.csproj", "{30FA40D4-61F7-4A24-8002-D3CB312A4944}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30FA40D4-61F7-4A24-8002-D3CB312A4944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FA40D4-61F7-4A24-8002-D3CB312A4944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FA40D4-61F7-4A24-8002-D3CB312A4944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FA40D4-61F7-4A24-8002-D3CB312A4944}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00DC2D48-BE2E-4A89-AC21-4F1AF9E7006C}
+	EndGlobalSection
+EndGlobal
