@@ -9,7 +9,7 @@ namespace Swamp_Game
 {
     abstract class Enemy : Character
     {
-        [NonSerialized] protected Random rand = new Random();
+        protected Random rand = new Random();
         protected Enemy(double HP, double Damage, int Y, int X) : base(Y, X, (TileType)1)
         {
             this.HP = HP;
