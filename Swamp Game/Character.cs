@@ -15,6 +15,7 @@ namespace Swamp_Game
         private Gold gold;
         protected int goldPurse = 0;
         public Tile[] vision = new Tile[4];
+        protected Weapon equipped;
 
         public enum Movement
         {

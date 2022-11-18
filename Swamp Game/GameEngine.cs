@@ -16,11 +16,13 @@ namespace Swamp_Game
     internal class GameEngine
     {
         private Map map;
+        private Shop shop;
         private int noMonsters = 4;
         private int noDrops = 2;
+        private int noWeapons;
         public GameEngine()
         {
-            map = new Map(10, 10, 10, 10, noMonsters, noDrops);
+            map = new Map(10, 10, 10, 10, noMonsters, noDrops, noWeapons);
         }
         public Map GetMap()
         {
