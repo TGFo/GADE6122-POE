@@ -5,6 +5,8 @@ namespace Swamp_Game
         static GameEngine game = new GameEngine();
         readonly string heroInfo = game.GetMap().GetHero().ToString();
         int playerMove = 5;
+        int shopItem;
+        List<Button> shopButtons = new List<Button>();
         public Form1()
         {
             InitializeComponent();
@@ -12,6 +14,10 @@ namespace Swamp_Game
             txtDisplay.Text = game.GetMap().GetHero().ToString();
             listEnemies.Items.AddRange(game.GetMap().GetEnemies());
             btnAttack.Enabled = false;
+            shopButtons.Add(btnItem1);
+            shopButtons.Add(btnItem2);
+            shopButtons.Add(btnItem3);
+            RefreshShop();
         }
 
         private void BtnUp_Click(object sender, EventArgs e)
@@ -83,6 +89,7 @@ namespace Swamp_Game
                 lblEnemyInfo.Text = "Selected Enemy's HP: " + (((Enemy)listEnemies.SelectedItem).GetHP()).ToString();
             }
             btnAttack.Enabled = false;
+            RefreshShop();
         }
         public void MovePlayer()
         {
@@ -133,6 +140,39 @@ namespace Swamp_Game
         {
             game.LoadGame();
             turn();
+        }
+
+        private void btnItem1_Click(object sender, EventArgs e)
+        {
+            shopItem = 0;
+            game.GetShop().Buy(shopItem);
+        }
+
+        private void btnItem2_Click(object sender, EventArgs e)
+        {
+            shopItem = 1;
+            game.GetShop().Buy(shopItem);
+        }
+
+        private void btnItem3_Click(object sender, EventArgs e)
+        {
+            shopItem = 2;
+            game.GetShop().Buy(shopItem);
+        }
+        public void RefreshShop()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                shopButtons[i].Text = game.GetShop().getWeapons()[i].ToString();
+                if (game.GetShop().CanBuy(i))
+                {
+                    shopButtons[i].Enabled = true;
+                }
+                else
+                {
+                    shopButtons[i].Enabled = false;
+                }
+            }
         }
     }
 }

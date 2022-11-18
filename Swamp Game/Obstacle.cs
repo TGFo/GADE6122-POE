@@ -11,6 +11,8 @@ namespace Swamp_Game
     {
 
         public Obstacle(int Y, int X) : base(Y, X, (TileType)4)
-        {   }
+        {
+            symbol = "X";
+        }
     }
 }

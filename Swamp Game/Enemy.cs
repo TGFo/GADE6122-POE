@@ -17,7 +17,14 @@ namespace Swamp_Game
         }
         public override string ToString()
         {
-            return this.GetType().Name + " at [" + X.ToString() + "," + Y.ToString() + "] (" + Damage.ToString() + ")" + HP.ToString();
+            string hasWeapon = "Bare Handed";
+            string equippedWeapon = "";
+            if(equipped != null)
+            {
+                hasWeapon = "Equipped: ";
+                equippedWeapon = "with " + equipped.getWeaponType().ToString() + "(" + equipped.getDurability() + "x" + equipped.getWeaponDamage() + ")";
+            }
+            return hasWeapon + this.GetType().Name + "(" + HP.ToString() + "/" + MaxHP.ToString() + "HP) at [" + X.ToString() + "," + Y.ToString() + "] " + equippedWeapon;
         }
     }
 }

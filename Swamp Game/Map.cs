@@ -196,6 +196,7 @@ namespace Swamp_Game
                             break;
                         case 2:
                             enemy[enemyNumber] = new Leader(mapY, mapX);
+                            ((Leader)enemy[enemyNumber]).setTarget(hero);
                             break;
                     }
                     tile[mapY, mapX] = enemy[enemyNumber];
@@ -237,7 +238,7 @@ namespace Swamp_Game
                     map[i, j] = '.';
                     if(tile[i, j] != null)
                     {
-                        map[i, j] = (tile[i, j].GetType().Name)[0];
+                        map[i, j] = (tile[i, j].getSymbol())[0];
                     }
                 }
             }

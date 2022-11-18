@@ -60,6 +60,9 @@ namespace Swamp_Game
         {
             return "Buy " + weapons[num].getWeaponType() + " (" + weapons[num].getCost() + " Gold)";
         }
-
+        public Weapon[] getWeapons()
+        {
+            return weapons;
+        }
     }
 }

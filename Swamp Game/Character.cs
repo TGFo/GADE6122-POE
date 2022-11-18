@@ -29,6 +29,10 @@ namespace Swamp_Game
         public Character(int Y,int X, TileType type) : base(Y, X, type)
         {
             HP = MaxHP;
+            if(Damage != 5)
+            {
+                Equip(equipped);
+            }
         }
         public double GetHP()
         {
@@ -54,6 +58,14 @@ namespace Swamp_Game
         {
             this.Damage = Damage;
         }
+        public Weapon getEquipped()
+        { 
+            return equipped; 
+        }
+        public void setEquipped(Weapon equipped)
+        { 
+            this.equipped = equipped; 
+        }
         public virtual void Attack(Character target)
         {
             if(target != null)
@@ -72,12 +84,15 @@ namespace Swamp_Game
         }
         public virtual bool CheckRange(Character target)
         {
-            bool inRange;
-            if (DistanceTo(target) == 1)
+            bool inRange = false;
+            if (equipped != null && DistanceTo(target) <= equipped.getRange())
             {
                 inRange = true;
             }
-            else inRange = false;
+            else if(equipped == null)
+            {
+                inRange = true;
+            }
             return inRange;
         }
         private int DistanceTo(Character target)
@@ -120,6 +135,26 @@ namespace Swamp_Game
             {
                 gold = (Gold)I;
                 goldPurse += gold.GoldAmount();
+            }
+            if(I != null && I.GetTileType() == (TileType)3)
+            {
+                Equip((Weapon)I);
+            }
+        }
+        private void Equip(Weapon w)
+        {
+            if(w != null)
+            {
+                equipped = w;
+                Damage = equipped.getWeaponDamage();
+            }
+        }
+        public void loot(Character dead)
+        {
+            goldPurse = goldPurse + dead.AccessGoldPurse();
+            if(equipped == null && Damage != 5)
+            {
+                Equip(dead.getEquipped());
             }
         }
         public abstract Movement ReturnMove(Movement move = 0);

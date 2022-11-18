@@ -12,7 +12,8 @@ namespace Swamp_Game
     {
         public Mage(int Y, int X) : base(5, 5, Y, X)
         {
-
+            goldPurse = 3;
+            symbol = "M";
         }
 
         public override Movement ReturnMove(Movement move = Movement.NoMovement)
@@ -22,13 +23,13 @@ namespace Swamp_Game
         public override bool CheckRange(Character target)
         {
             bool inRange = false;
-            if(target.GetY() == Y - 1 || target.GetY() == Y + 1 || target.GetX() == X - 1 || target.GetX() == X + 1)
+            if (target.GetY() == Y - 1 || target.GetY() == Y + 1 || target.GetX() == X - 1 || target.GetX() == X + 1)
             {
-                if(base.CheckRange(target))
+                if (base.CheckRange(target))
                 {
                     inRange = true;
                 }
-                else if(target.GetY() != Y && target.GetX() != X)
+                else if (target.GetY() != Y && target.GetX() != X)
                 {
                     inRange = true;
                 }

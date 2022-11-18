@@ -11,6 +11,9 @@ namespace Swamp_Game
         private Tile target;
         public Leader(int Y, int X) : base(20, 2, Y, X)
         {
+            equipped = new MeleeWeapon(Y, X, (MeleeWeapon.Types)1);
+            goldPurse = 2;
+            symbol = "L";
         }
         public Tile getTarget()
         {
@@ -23,18 +26,42 @@ namespace Swamp_Game
         public override Movement ReturnMove(Movement move = Movement.NoMovement)
         {
             int distance;
-            int shortDistance = Math.Abs((target.GetX() - vision[0].GetX()) + (target.GetY() - vision[0].GetY()));
+            int shortDistance = 0;
             int movement = 0;
-            for (int i = 0; i >= 3; i++)
+            if (vision[0] == null)
             {
-                if (vision[i] == null)
+                distance = Math.Abs((target.GetX() - X) + (target.GetY() - (Y - 1)));
+                if(distance < shortDistance)
                 {
-                    distance = Math.Abs((target.GetX() - vision[i].GetX()) + (target.GetY() - vision[i].GetY()));
-                    if(distance < shortDistance)
-                    {
-                        shortDistance= distance;
-                        movement = i + 1;
-                    }
+                    shortDistance = distance;
+                    movement = 0 + 1;
+                }
+            }
+            if (vision[1] == null)
+            {
+                distance = Math.Abs((target.GetX() - X) + (target.GetY() - (Y + 1)));
+                if (distance < shortDistance)
+                {
+                    shortDistance = distance;
+                    movement = 1 + 1;
+                }
+            }
+            if (vision[2] == null)
+            {
+                distance = Math.Abs((target.GetX() - (X - 1)) + (target.GetY() - Y));
+                if (distance < shortDistance)
+                {
+                    shortDistance = distance;
+                    movement = 2 + 1;
+                }
+            }
+            if (vision[3] == null)
+            {
+                distance = Math.Abs((target.GetX() - (X + 1)) + (target.GetY() - (Y - 1)));
+                if (distance < shortDistance)
+                {
+                    shortDistance = distance;
+                    movement = 3 + 1;
                 }
             }
             return (Movement)movement;
