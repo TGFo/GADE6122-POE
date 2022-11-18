@@ -26,7 +26,7 @@ namespace Swamp_Game
         public override Movement ReturnMove(Movement move = Movement.NoMovement)
         {
             int distance;
-            int shortDistance = 0;
+            int shortDistance = Math.Abs((target.GetX() - X) + (target.GetY() - (Y - 1)));
             int movement = 0;
             if (vision[0] == null)
             {
