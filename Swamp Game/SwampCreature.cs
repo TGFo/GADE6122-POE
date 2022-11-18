@@ -13,6 +13,9 @@ namespace Swamp_Game
         {
             //SetDamage(1);
             //SetHP(10);
+            equipped = new MeleeWeapon(Y, X, 0);
+            goldPurse = 1;
+            symbol = "S";
         }
 
         public override Movement ReturnMove(Movement move)

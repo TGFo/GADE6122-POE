@@ -11,7 +11,7 @@ namespace Swamp_Game
         public enum Types
         {
             Dagger,
-            Longsword
+            Longsword,
         }
         public MeleeWeapon(int Y, int X, Types meleeWeapon) : base(Y, X)
         {
@@ -22,12 +22,14 @@ namespace Swamp_Game
                     durability = 10;
                     damage = 3;
                     cost = 3;
+                    symbol = "d";
                     break;
                 case (Types)1:
                     weaponType = "Longsword";
                     durability = 6;
                     damage = 4;
                     cost = 5;
+                    symbol = "l";
                     break;
             }
         }
@@ -38,7 +40,7 @@ namespace Swamp_Game
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return weaponType + "(" + cost + ") dmg: " + damage + " durability: " + durability + " range: " + getRange();
         }
     }
 }

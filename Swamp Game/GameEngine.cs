@@ -16,11 +16,14 @@ namespace Swamp_Game
     internal class GameEngine
     {
         private Map map;
+        private Shop shop;
         private int noMonsters = 4;
         private int noDrops = 2;
+        private int noWeapons;
         public GameEngine()
         {
-            map = new Map(10, 10, 10, 10, noMonsters, noDrops);
+            map = new Map(10, 10, 10, 10, noMonsters, noDrops, noWeapons);
+            shop = new Shop(map.GetHero());
         }
         public Map GetMap()
         {
@@ -52,6 +55,7 @@ namespace Swamp_Game
                     oldX = map.GetEnemies()[i].GetX();
                     map.GetEnemies()[i].Move(map.GetEnemies()[i].ReturnMove());
                     map.setTiles(oldY, oldX, null);
+                    map.GetEnemies()[i].Pickup(map.GetItemAtPosition(map.GetHero().GetX(), map.GetHero().GetY()));
                 }
             }
         }
@@ -61,6 +65,7 @@ namespace Swamp_Game
         }
         public void Kill(Character target)
         {
+            map.GetHero().loot(target);
             int deadX;
             int deadY;
             deadX = target.GetX();
@@ -103,6 +108,10 @@ namespace Swamp_Game
                 mapRepresentation += "\n"; 
             }
             return mapRepresentation;
+        }
+        public Shop GetShop()
+        {
+            return shop;
         }
 
         public void SaveGame()

@@ -32,6 +32,10 @@ namespace Swamp_Game
         { this.durability = durability; }
         public void setCost(int cost) 
         { this.cost = cost; }
+        public string getWeaponType()
+        { return weaponType; }
+        public void setWeaponType(string weaponType)
+        { this.weaponType = weaponType;}
 
     }
 }

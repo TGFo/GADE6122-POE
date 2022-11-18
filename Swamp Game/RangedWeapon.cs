@@ -23,6 +23,7 @@ namespace Swamp_Game
                     range = 3;
                     damage = 5;
                     cost = 7;
+                    symbol = "r";
                     break;
                 case (Types)1:
                     weaponType = "Longbow";
@@ -30,6 +31,7 @@ namespace Swamp_Game
                     range = 2;
                     damage = 4;
                     cost = 6;
+                    symbol = ")";
                     break;
             }
         }
@@ -43,7 +45,7 @@ namespace Swamp_Game
         }
         public override string ToString()
         {
-            throw new NotImplementedException();
+            return weaponType + "(" + cost + ") dmg: " + damage + " durability: " + durability + " range: " + range;
         }
     }
 }

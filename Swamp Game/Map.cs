@@ -21,6 +21,7 @@ namespace Swamp_Game
         private int enemyNumber = 0;
         private int itemNumber = 0;
         private int enemyType;
+        private int weaponType;
         private int NoOfMonster;
         private int drops;
         public int getNoOfMonster()
@@ -39,7 +40,7 @@ namespace Swamp_Game
         {
             this.drops = drops;
         }
-        public Map(int minHeight, int minWidth, int maxWidth, int maxHeight, int NoOfMonster, int drops)
+        public Map(int minHeight, int minWidth, int maxWidth, int maxHeight, int NoOfMonster, int drops, int weaponDrops)
         {
             this.drops = drops;
             this.NoOfMonster = NoOfMonster;
@@ -66,7 +67,14 @@ namespace Swamp_Game
             }
             for(itemNumber = 0; itemNumber < items.Length; itemNumber++)
             {
-                items[itemNumber] = (Item)Create((Tile.TileType)2);
+                if(itemNumber > weaponDrops)
+                {
+                    items[itemNumber] = (Item)Create((Tile.TileType)2);
+                }
+                else
+                {
+                    items[itemNumber] = (Item)Create((Tile.TileType)3);
+                }
             }
             UpdateVision();
             GenerateMap();
@@ -177,7 +185,7 @@ namespace Swamp_Game
                     tile[mapY, mapX] = hero;
                     break;
                 case (Tile.TileType)1:
-                    enemyType = rand.Next(2);
+                    enemyType = rand.Next(3);
                     switch(enemyType)
                     {
                         case 0:
@@ -186,6 +194,10 @@ namespace Swamp_Game
                         case 1:
                             enemy[enemyNumber] = new Mage(mapY, mapX);
                             break;
+                        case 2:
+                            enemy[enemyNumber] = new Leader(mapY, mapX);
+                            ((Leader)enemy[enemyNumber]).setTarget(hero);
+                            break;
                     }
                     tile[mapY, mapX] = enemy[enemyNumber];
                     break;
@@ -193,6 +205,19 @@ namespace Swamp_Game
                     items[itemNumber] = new Gold(mapY, mapX);
                     tile[mapY, mapX] = items[itemNumber];
                     break;
+                case(Tile.TileType)3:
+                    weaponType= rand.Next(2);
+                    switch (weaponType)
+                    {
+                        case 0:
+                            tile[mapY, mapX] = new MeleeWeapon(mapY, mapX, (MeleeWeapon.Types)rand.Next(2));
+                            break;
+                        case 1:
+                            tile[mapY, mapX] = new RangedWeapon(mapY, mapX, (RangedWeapon.Types)rand.Next(2));
+                            break;
+                    }
+                    break;
+                    
             }
             return tile[mapY, mapX];
         }
@@ -213,7 +238,7 @@ namespace Swamp_Game
                     map[i, j] = '.';
                     if(tile[i, j] != null)
                     {
-                        map[i, j] = (tile[i, j].GetType().Name)[0];
+                        map[i, j] = (tile[i, j].getSymbol())[0];
                     }
                 }
             }

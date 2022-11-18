@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace Swamp_Game
 {
     abstract class Tile
     {
+        protected string symbol;
         protected int X;
         protected int Y;
         public enum TileType
@@ -46,6 +48,10 @@ namespace Swamp_Game
         public TileType GetTileType()
         {
             return tileType;
+        }
+        public string getSymbol()
+        {
+            return symbol;
         }
     }
 }

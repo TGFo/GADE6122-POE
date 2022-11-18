@@ -14,6 +14,7 @@ namespace Swamp_Game
         public Gold(int Y, int X) : base(Y, X, (TileType)2)
         {
             goldAmount = rand.Next(1, 6);
+            symbol = "G";
         }
         public int GoldAmount()
         {
